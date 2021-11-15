@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    
+    "build": "cd web && npm install && npm run build",
     "start": "node server.mjs",
     "dev": "nodemon server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"

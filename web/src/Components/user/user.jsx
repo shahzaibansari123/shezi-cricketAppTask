@@ -38,7 +38,7 @@ function UserPanel() {
         }, []);
 
         useEffect(() => {
-          const socket = io("http://localhost:5000"); // to connect with locally running Socker.io server
+          const socket = io("http://localhost:5000" || "https://shezi-cricketapptask.herokuapp.com"); // to connect with locally running Socker.io server
   
           socket.on('connect', function () {
               console.log("connected to server")
