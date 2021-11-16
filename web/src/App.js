@@ -9,24 +9,22 @@ function App() {
   const navigate = useNavigate();
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar  bg="dark"  variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Cricket Live Update</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Brand   href="#home">Cricket Live Update</Navbar.Brand>
+          <Navbar.Toggle  aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse  id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link onClick={() => { navigate("/") }}>User Panel</Nav.Link>
-              <Nav.Link onClick={() => { navigate("/admin") }}>Admin Panel</Nav.Link>
+              <Nav.Link  onClick={() => { navigate("/admin") }}>Admin Panel</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
       <Routes>
       <Route path='/' element={<UserPanel/>} />
       <Route path='/admin' element={<Login/>} />
       </Routes>
-      
     </div>
   );
 }

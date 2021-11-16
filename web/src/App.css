@@ -1,3 +1,13 @@
+#maindiv{
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border-radius: 0px;
+  background-size:contain;
+  border-color: rgb(0, 0, 0) ;
+  box-shadow: 5px 5px 25px 5px #cac7c7;
+  /* border: 5px solid; */
+}
+
 .App {
   text-align: center;
 }

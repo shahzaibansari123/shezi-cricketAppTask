@@ -12,73 +12,42 @@ import { baseUrl } from "./../../core"
 // import { useContext } from "react";
 
 const validationSchema = yup.object({
-    // tournament: yup
-    //     .string('Enter tournament'),
+    tournament: yup
+        .string('Enter tournament')
+        .required("required"),
 
     // date: yup
-    //     .string('Enter date'),
-        
+    //     .string('Enter date'), 
     // innings: yup
     //     .string('Enter innings'),
-        
-
     // teamOne: yup
     //     .string('Enter teamOne'),
-        
-
     // player1: yup
     //     .string('Enter player1')
-        
-
     // player2: yup
     //     .string('Enter player2')
-        
-
     // player1: yup
     //     .string('Enter player1')
-        
-
+    // player2: yup
+    //     .string('Enter player2')    
+    // player1: yup
+    //     .string('Enter player1')
     // player2: yup
     //     .string('Enter player2')
-        
-
     // player1: yup
     //     .string('Enter player1')
-        
-
     // player2: yup
     //     .string('Enter player2')
-        
-    
     // player1: yup
     //     .string('Enter player1')
-        
-
-    // player2: yup
-    //     .string('Enter player2')
-        
-
-    // player1: yup
-    //     .string('Enter player1')
-        
-
     // player2: yup
     //     .string('Enter player2'),
-        
-
     // player1: yup
     //     .string('Enter player1'),
-        
-
     // player2: yup
     //     .string('Enter player2'),
-        
-    
     // player2: yup
     //     .string('Enter player2'),
-        
-    
-
 });
 
 function Login() {
@@ -108,13 +77,12 @@ function Login() {
                 bowler2: values.bowler2,
                 teamOneOvers: values.teamOneOvers,
                 teamTwoOvers: values.teamTwoOvers,
+                target: values.target,
                 toss: values.toss,
                 headline: values.headline,
             })
                 .then((res) => {
-
                     console.log("res: ", res.data);
-
                     if (res.data) {
                         console.log("data created successful")
                     }
@@ -165,15 +133,15 @@ function Login() {
                                 <TextField sx={{ width: "40%" }}
                                     color="primary"
                                     id="filled-basic"
-                                    label="innings"
-                                    placeholder="innings"
+                                    label="inning"
+                                    placeholder="inning"
                                     variant="filled"
                                     type="text"
-                                    name="innings"
-                                    value={formik.values.innings}
+                                    name="inning"
+                                    value={formik.values.inning}
                                     onChange={formik.handleChange}
-                                    error={formik.touched.innings && Boolean(formik.errors.innings)}
-                                    helperText={formik.touched.innings && formik.errors.innings}
+                                    error={formik.touched.inning && Boolean(formik.errors.inning)}
+                                    helperText={formik.touched.inning && formik.errors.inning}
                                 />
                             </center></Item>
                     </Grid>
@@ -272,11 +240,11 @@ function Login() {
                                 placeholder="wickets"
                                 variant="filled"
                                 type="text"
-                                name="teamTwoWickets"
-                                value={formik.values.teamTwoWickets}
+                                name="teamTwoWicket"
+                                value={formik.values.teamTwoWicket}
                                 onChange={formik.handleChange}
-                                error={formik.touched.teamTwoWickets && Boolean(formik.errors.teamTwoWickets)}
-                                helperText={formik.touched.teamTwoWickets && formik.errors.teamTwoWickets}
+                                error={formik.touched.teamTwoWicket && Boolean(formik.errors.teamTwoWicket)}
+                                helperText={formik.touched.teamTwoWicket && formik.errors.teamTwoWicket}
                             />
                         </Item>
                     </Grid>
@@ -393,6 +361,24 @@ function Login() {
                     <Grid item xl={12} lg={12} xs={12} sm={12} md={12} >
                         <Item>
                             <center>
+                                <TextField sx={{ width: "40%" }}
+                                    color="primary"
+                                    id="filled-basic"
+                                    label="target"
+                                    placeholder="target"
+                                    variant="filled"
+                                    type="text"
+                                    name="target"
+                                    value={formik.values.target}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.target && Boolean(formik.errors.target)}
+                                    helperText={formik.touched.target && formik.errors.target}
+                                />
+                            </center></Item>
+                    </Grid>
+                    <Grid item xl={12} lg={12} xs={12} sm={12} md={12} >
+                        <Item>
+                            <center>
                                 <TextField sx={{ width: "60%" }}
                                     color="primary"
                                     id="filled-basic"
@@ -429,7 +415,7 @@ function Login() {
                     <Grid item xl={12} lg={12} xs={12} sm={12} md={12} >
                         <Item>
                             <center>
-                            <Button sx={{ width: "30%", marginBottom: "1%" }} variant="contained" color="info" type="submit" >Live</Button>
+                                <Button sx={{ width: "30%", marginBottom: "1%" }} variant="contained" color="info" type="submit" >Live</Button>
                             </center></Item>
                     </Grid>
                 </Grid>
