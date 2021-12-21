@@ -5,52 +5,43 @@ import Button from '@mui/material/Button';
 import { Grid } from '@mui/material';
 import Item from '@mui/material/Grid'
 import * as yup from 'yup';
-// import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react"
 import axios from 'axios';
 import { baseUrl } from "./../../core"
-// import { GlobalContext } from "../../context/Context";
-// import { useContext } from "react";
 
 const validationSchema = yup.object({
     tournament: yup
         .string('Enter tournament')
         .required("required"),
 
-    // date: yup
-    //     .string('Enter date'), 
-    // innings: yup
-    //     .string('Enter innings'),
-    // teamOne: yup
-    //     .string('Enter teamOne'),
-    // player1: yup
-    //     .string('Enter player1')
-    // player2: yup
-    //     .string('Enter player2')
-    // player1: yup
-    //     .string('Enter player1')
-    // player2: yup
-    //     .string('Enter player2')    
-    // player1: yup
-    //     .string('Enter player1')
-    // player2: yup
-    //     .string('Enter player2')
-    // player1: yup
-    //     .string('Enter player1')
-    // player2: yup
-    //     .string('Enter player2')
-    // player1: yup
-    //     .string('Enter player1')
-    // player2: yup
-    //     .string('Enter player2'),
-    // player1: yup
-    //     .string('Enter player1'),
-    // player2: yup
-    //     .string('Enter player2'),
-    // player2: yup
-    //     .string('Enter player2'),
+    
 });
 
 function Login() {
+    const [posts, setPosts] = useState({
+        tournament: "",
+
+    });
+
+    useEffect(() => {
+        axios.get(`${baseUrl}/api/v1/data`, {
+        })
+            .then(res => {
+                // let arr=[];
+                // // res.data.forEach((element)=>{
+                //   arr.push(res.data)
+                // // })
+                console.log(res.data);
+                console.log("shahzaib")
+                // setPosts(res.data)
+                setPosts(res.data)
+                // console.log(arr)
+            });
+
+        return () => {
+            // console.log("post shown");
+        };
+    }, []);
     // let history = useHistory();
     // let { dispatch } = useContext(GlobalContext);
     const formik = useFormik({
@@ -61,26 +52,28 @@ function Login() {
         },
         onSubmit: function (values) {
             console.log("values: ", values)
-            axios.post(`${baseUrl}/api/v1/data`, {
-                tournament: values.tournament,
-                matchDate: values.matchDate,
-                inning: values.inning,
-                teamOne: values.teamOne,
-                teamOneScore: values.teamOneScore,
-                teamOneWicket: values.teamOneWicket,
-                teamTwo: values.teamTwo,
-                teamTwoScore: values.teamTwoScore,
-                teamTwoWicket: values.teamTwoWicket,
-                player1: values.player1,
-                player2: values.player2,
-                bowler1: values.bowler1,
-                bowler2: values.bowler2,
-                teamOneOvers: values.teamOneOvers,
-                teamTwoOvers: values.teamTwoOvers,
-                target: values.target,
-                toss: values.toss,
-                headline: values.headline,
-            })
+            axios.post(`${baseUrl}/api/v1/data`
+            // , {
+            //     tournament: values.tournament,
+            //     matchDate: values.matchDate,
+            //     inning: values.inning,
+            //     teamOne: values.teamOne,
+            //     teamOneScore: values.teamOneScore,
+            //     teamOneWicket: values.teamOneWicket,
+            //     teamTwo: values.teamTwo,
+            //     teamTwoScore: values.teamTwoScore,
+            //     teamTwoWicket: values.teamTwoWicket,
+            //     player1: values.player1,
+            //     player2: values.player2,
+            //     bowler1: values.bowler1,
+            //     bowler2: values.bowler2,
+            //     teamOneOvers: values.teamOneOvers,
+            //     teamTwoOvers: values.teamTwoOvers,
+            //     target: values.target,
+            //     toss: values.toss,
+            //     headline: values.headline,
+            // }
+            )
                 .then((res) => {
                     console.log("res: ", res.data);
                     if (res.data) {
@@ -102,12 +95,17 @@ function Login() {
                         <Item  > <TextField sx={{ width: "100%" }}
                             color="primary"
                             id="outlined-basic"
-                            label="Tournament"
                             placeholder="tournament"
                             variant="filled"
                             name="tournament"
                             value={formik.values.tournament}
                             onChange={formik.handleChange}
+                            //         value={posts.tournament}
+                            // onChange={(e) => {
+                            //     setPosts((prev) => {
+                            //         return { ...prev, tournament: e.target.value }
+                            //     })
+                            // }}
                             error={formik.touched.tournament && Boolean(formik.errors.tournament)}
                             helperText={formik.touched.tournament && formik.errors.tournament}
                         /></Item>
@@ -116,7 +114,6 @@ function Login() {
                         <Item>     <TextField sx={{ width: "100%" }}
                             color="primary"
                             id="filled-basic"
-                            label="Date"
                             placeholder="date"
                             variant="filled"
                             type="text"
@@ -133,7 +130,6 @@ function Login() {
                                 <TextField sx={{ width: "40%" }}
                                     color="primary"
                                     id="filled-basic"
-                                    label="inning"
                                     placeholder="inning"
                                     variant="filled"
                                     type="text"
@@ -150,7 +146,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="Team One"
                                 placeholder="Team One"
                                 variant="filled"
                                 type="text"
@@ -167,7 +162,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="Score"
                                 placeholder="Score"
                                 variant="filled"
                                 type="text"
@@ -184,7 +178,6 @@ function Login() {
                             <TextField sx={{ width: "30%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="wickets"
                                 placeholder="wickets"
                                 variant="filled"
                                 type="text"
@@ -201,7 +194,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="Team Two"
                                 placeholder="Team Two"
                                 variant="filled"
                                 type="text"
@@ -218,7 +210,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="Score"
                                 placeholder="Score"
                                 variant="filled"
                                 type="text"
@@ -236,7 +227,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="wickets"
                                 placeholder="wickets"
                                 variant="filled"
                                 type="text"
@@ -257,7 +247,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="overs"
                                 placeholder="overs"
                                 variant="filled"
                                 type="text"
@@ -278,7 +267,6 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="overs"
                                 placeholder="overs"
                                 variant="filled"
                                 type="text"
@@ -295,7 +283,7 @@ function Login() {
                             <TextField sx={{ width: "50%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="batsman 01"
+
                                 placeholder="batsman 01"
                                 variant="filled"
                                 type="text"
@@ -312,7 +300,7 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="bowler 01"
+
                                 placeholder="bowler 01"
                                 variant="filled"
                                 type="text"
@@ -329,7 +317,7 @@ function Login() {
                             <TextField sx={{ width: "50%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="batsman 02"
+
                                 placeholder="batsman 02"
                                 variant="filled"
                                 type="text"
@@ -346,7 +334,7 @@ function Login() {
                             <TextField sx={{ width: "100%" }}
                                 color="primary"
                                 id="filled-basic"
-                                label="bowler 02"
+
                                 placeholder="bowler 02"
                                 variant="filled"
                                 type="text"
@@ -364,7 +352,6 @@ function Login() {
                                 <TextField sx={{ width: "40%" }}
                                     color="primary"
                                     id="filled-basic"
-                                    label="target"
                                     placeholder="target"
                                     variant="filled"
                                     type="text"
@@ -382,7 +369,6 @@ function Login() {
                                 <TextField sx={{ width: "60%" }}
                                     color="primary"
                                     id="filled-basic"
-                                    label="toss"
                                     placeholder="toss"
                                     variant="filled"
                                     type="text"
@@ -400,7 +386,6 @@ function Login() {
                                 <TextField sx={{ width: "40%" }}
                                     color="primary"
                                     id="filled-basic"
-                                    label="headline"
                                     placeholder="headline"
                                     variant="filled"
                                     type="text"

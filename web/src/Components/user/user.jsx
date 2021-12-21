@@ -21,7 +21,7 @@ function UserPanel() {
         //   arr.push(res.data)
         // // })
         console.log(res.data);
-        console.log("shahzaib")
+        // console.log("shahzaib")
         // setPosts(res.data)
         setPosts(res.data)
         // console.log(arr)
@@ -33,9 +33,9 @@ function UserPanel() {
   }, []);
 
   useEffect(() => {
-    const socket = io("https://shezi-cricketapptask.herokuapp.com");
+    // const socket = io("https://shezi-cricketapptask.herokuapp.com");
     // to connect with locally running Socker.io server
-    //  const socket = io("http://localhost:5000");
+     const socket = io("http://localhost:5000");
     socket.on('connect', function () {
       console.log("connected to server")
     });
